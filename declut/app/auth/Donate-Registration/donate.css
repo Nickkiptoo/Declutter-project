@@ -1,0 +1,288 @@
+/* ================== Navbar ================== */
+
+/* Navbar container */
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 12px 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* Hamburger icon - hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Links and button container */
+.information {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Links */
+.information a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.information a:hover {
+  color: #13ec5b;
+}
+
+/* Navbar button */
+.btn {
+  background-color: #13ec5b;
+  color: black;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border: 1px solid black;
+}
+
+/* Responsive Navbar for small screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .information {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 200px;
+    height: calc(100% - 60px);
+    background-color: aliceblue;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .information.open {
+    right: 0;
+  }
+
+  .information a,
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ================== Registration Section ================== */
+
+/* Registration container */
+.Registration {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Highlighted first card */
+.first-card {
+  background-color: #f0f8ff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.first-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.first-card p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Form card */
+.form-card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ================== Login/Register Buttons ================== */
+
+/* First button (white) */
+.Registration-btn > button:nth-child(1) {
+  width: 48%;
+  margin-right: 4%;
+  padding: 10px 0;
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn > button:nth-child(1):hover {
+  background-color: #f0f0f0;
+}
+
+/* Second button (green) */
+.Registration-btn > button:nth-child(2) {
+  width: 48%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #13ec5b;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn > button:nth-child(2):hover {
+  background-color: #0ed03f;
+}
+
+/* ================== Buy/Sell/Donate Cards ================== */
+.action-cards {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-cards .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 12px;
+  width: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-cards .card:hover {
+  background-color: #e0f8e0;
+  transform: translateY(-5px);
+}
+
+.action-cards .card h3 {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Add border to first card */
+.action-cards > :nth-child(3) {
+ 
+  background: #13ec5b;
+}
+
+/* ================== Form Inputs ================== */
+.Registration-btn input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* Password wrapper with eye */
+.password-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 35px;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Submit button */
+.Registration-btn button[type="submit"] {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 6px;
+  background-color: #2a7cff;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn button[type="submit"]:hover {
+  background-color: #185cd8;
+}
+
+/* ================== Responsive Layout ================== */
+@media (max-width: 768px) {
+  .first-card {
+    padding: 30px 20px;
+  }
+
+  /* Stack Login/Register buttons */
+  .Registration-btn > button:nth-child(1),
+  .Registration-btn > button:nth-child(2) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Stack Buy/Sell/Donate cards */
+  .action-cards {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .action-cards .card {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px;
+    gap: 15px;
+  }
+
+  .action-cards .card h3 {
+    margin-top: 0;
+  }
+}
