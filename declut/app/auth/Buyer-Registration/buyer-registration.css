@@ -124,6 +124,7 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
+
 /* ================== Login/Register Buttons ================== */
 
 .Registration-btn > button:nth-child(1) {
@@ -134,6 +135,11 @@
   border-radius: 6px;
   background-color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn > button:nth-child(1):hover {
+  background-color: #f0f0f0;
 }
 
 .Registration-btn > button:nth-child(2) {
@@ -143,6 +149,11 @@
   background-color: #13ec5b;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn > button:nth-child(2):hover {
+  background-color: #0ed03f;
 }
 
 /* ================== Action Cards ================== */
@@ -178,7 +189,7 @@
   font-size: 14px;
 }
 
-/* ✅ ACTIVE CARD (FIXED SYSTEM) */
+/* ✅ ACTIVE CARD STYLING */
 .action-cards .card.active {
   background-color: #13ec5b;
   border: 1px solid #13ec5b;
@@ -216,20 +227,29 @@
   width: 100%;
   padding: 12px;
   border-radius: 6px;
-  background-color: #2a7cff;
+  background-color: #13ec5b;
   color: white;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Registration-btn button[type="submit"]:hover {
+  background-color: #185cd8;
 }
 
 /* ================== Mobile Layout ================== */
 
 @media (max-width: 768px) {
+  .first-card {
+    padding: 30px 20px;
+  }
 
   .Registration-btn > button:nth-child(1),
   .Registration-btn > button:nth-child(2) {
     width: 100%;
     margin-bottom: 10px;
+    margin-right: 0;
   }
 
   .action-cards {

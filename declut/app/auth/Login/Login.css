@@ -1,0 +1,378 @@
+/* ================== Navbar ================== */
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 12px 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.information {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.information a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.information a:hover {
+  color: #13ec5b;
+}
+
+.btn {
+  background-color: #13ec5b;
+  color: black;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border: 1px solid black;
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .information {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 200px;
+    height: calc(100% - 60px);
+    background-color: aliceblue;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .information.open {
+    right: 0;
+  }
+
+  .information a,
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ================== Login Section ================== */
+
+.Login {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Info card */
+.first-card {
+  background-color: #f0f8ff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.first-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.first-card p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Form card */
+.form-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ================== Form Header (Login/Register Buttons) ================== */
+
+.form-header {
+  display: flex;
+  gap: 0;
+  margin-bottom: 30px;
+}
+
+.form-header button {
+  flex: 1;
+  padding: 12px 0;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.form-header button:first-child {
+  border-radius: 6px 0 0 6px;
+  border-right: none;
+}
+
+.form-header button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.form-header button.active {
+  background-color: #13ec5b;
+  color: black;
+  border-color: #13ec5b;
+  font-weight: 600;
+}
+
+.form-header button:not(.active):hover {
+  background-color: #f5f5f5;
+}
+
+/* ================== Form Content ================== */
+
+.Login-form h2 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+/* ================== Inputs ================== */
+
+.Login-form input[type="email"],
+.Login-form input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.password-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 12px 15px;
+  padding-right: 40px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.eye-icon:hover {
+  opacity: 1;
+}
+
+/* ================== Form Options ================== */
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+}
+
+.remember-me input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #2a7cff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #185cd8;
+  text-decoration: underline;
+}
+
+/* ================== Submit Button ================== */
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #13ec5b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #185cd8;
+}
+
+/* ================== Divider ================== */
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider span {
+  padding: 0 15px;
+}
+
+/* ================== Social Login ================== */
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-btn:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.social-btn.google {
+  color: #333;
+}
+
+.social-btn.facebook {
+  color: #333;
+}
+
+/* ================== Sign Up Text ================== */
+
+.signup-text {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 15px;
+}
+
+.signup-text a {
+  color: #2a7cff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* ================== Mobile Layout ================== */
+
+@media (max-width: 768px) {
+  .Login {
+    max-width: 100%;
+  }
+
+  .first-card {
+    padding: 30px 20px;
+  }
+
+  .form-card {
+    padding: 25px 20px;
+  }
+
+  .Login-form h2 {
+    font-size: 18px;
+  }
+
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

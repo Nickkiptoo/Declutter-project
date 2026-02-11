@@ -3,23 +3,82 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
 import "./buyer-registration.css";
 
 import sellIcon from "./icons/sell.svg";
 import buyIcon from "./icons/buy.svg";
 import Donate from "./icons/Donate.svg";
-import eyeIcon from "./icons/eye.svg";       // eye open
-import eyeOffIcon from "./icons/eye-off.svg"; // eye closed
+import eyeIcon from "./icons/eye.svg";
+import eyeOffIcon from "./icons/eye-off.svg";
 
 export default function BuyerRegistration() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const router = useRouter(); // initialize router
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const togglePassword = () => setShowPassword(!showPassword);
   const toggleConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    // Validate password length
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Sign up the user
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            name: formData.name,
+            user_type: "buyer",
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      // Redirect to email confirmation page or dashboard
+      router.push("/auth/verify-email");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -44,16 +103,21 @@ export default function BuyerRegistration() {
 
         {/* Form Card */}
         <div className="Register-card form-card">
-          <form>
+          <form onSubmit={handleRegister}>
             <div className="Registration-btn">
-              <button type="button">Login</button>
-              <button type="button">Register</button>
+              <button 
+                type="button"
+                onClick={() => router.push("/auth/Login")}
+              >
+                Login
+              </button>
+              <button type="button" className="active">Register</button>
               <h4>I want to ...</h4>
 
               {/* Buy/Sell/Donate Cards */}
               <div className="action-cards">
                 <div
-                  className="card"
+                  className="card active"
                   onClick={() => router.push("/auth/Buyer-Registration")}
                   style={{ cursor: "pointer" }}
                 >
@@ -80,14 +144,39 @@ export default function BuyerRegistration() {
                 </div>
               </div>
 
+              {/* Error Message */}
+              {error && (
+                <div className="error-message">
+                  {error}
+                </div>
+              )}
+
               {/* Input Fields */}
-              <input type="text" placeholder="Enter your name eg John Doe" />
-              <input type="text" placeholder="Enter your Email@gmail.com" />
+              <input 
+                type="text" 
+                name="name"
+                placeholder="Enter your name eg John Doe" 
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <input 
+                type="email" 
+                name="email"
+                placeholder="Enter your Email@gmail.com" 
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
               
               <div className="password-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
                 />
                 <Image
                   src={showPassword ? eyeOffIcon : eyeIcon}
@@ -102,7 +191,11 @@ export default function BuyerRegistration() {
               <div className="password-wrapper">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
                   placeholder="Confirm password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
                 />
                 <Image
                   src={showConfirmPassword ? eyeOffIcon : eyeIcon}
@@ -114,7 +207,12 @@ export default function BuyerRegistration() {
                 />
               </div>
 
-              <button type="submit">Register</button>
+              <button 
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Creating account..." : "Register"}
+              </button>
             </div>
           </form>
         </div>

@@ -187,6 +187,7 @@
   width: 100px;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .action-cards .card:hover {
@@ -200,10 +201,10 @@
   text-align: center;
 }
 
-/* Add border to first card */
-.action-cards > :nth-child(3) {
- 
-  background: #13ec5b;
+/* ✅ ACTIVE CARD STYLING */
+.action-cards .card.active {
+  background-color: #13ec5b;
+  border: 1px solid #13ec5b;
 }
 
 /* ================== Form Inputs ================== */
@@ -241,7 +242,7 @@
   width: 100%;
   padding: 12px 0;
   border-radius: 6px;
-  background-color: #2a7cff;
+  background-color: #13ec5b;
   color: white;
   font-weight: 500;
   border: none;
